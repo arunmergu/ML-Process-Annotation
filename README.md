@@ -1,13 +1,18 @@
-Prerequisites:
+# Prerequisites:
 Python 11
 Spark 4.0
 Java 17
 
-step1: Clone the git project using below command 
+
+# Steps to run the code 
+
+step1: Clone the git project using below command
+
 git clone https://github.com/arunmergu/ML-Process-Annotation.git
 
 
 step2: Install requirements.txt file. 
+
 pip3 install requirements.txt
 
 Step3: Run the process_annotations.py script to generate clean_training_data.jsonl and disagreements.log
@@ -16,16 +21,15 @@ python3 process_annotations.py
 
 
 
-How PoC fits into larger system?
+# How PoC fits into larger system?
 
-system design represents the specialized Feature Pipeline, serving as the critical bridge that connects the messy world of raw data and human annotations to the consumer layer of ML models. It is architecturally engineered for scalability and reliability, relying on distributed processing via Apache Spark (Dataproc) to handle high-volume data transformation. The Airflow/Composer orchestrator automates the entire flow, managing data ingestion and crucial backfill operations for historical datasets. The system’s core value lies in the Offline Feature Store (BigQuery), which guarantees point-in-time correctness by storing time-versioned feature data, preventing data leakage during model training. These validated features are then synced to the Online Feature Store (Memorystore) for ultra-low-latency serving to real-time models. Furthermore, robust governance is built into the pipeline, utilizing metadata to track data lineage and feature code versions, ensuring auditability and compliance throughout the data lifecycle. Although implemented primarily with GCP cloud services for its managed benefits, the underlying open-source technologies (Spark, Airflow) ensure the same robust design can be translated to other cloud environments or custom infrastructure based on trade-off analysis.
-
-
+Pipeline which is designed serves as critical bridge that connects the raw data and human annotations to the consumer layer of ML models. It is architecturally engineered for scalability and reliability, relying on distributed processing via Apache Spark (Dataproc) to handle high-volume data transformation. The Airflow/Composer orchestrator automates the entire flow, managing data ingestion and crucial backfill operations for historical datasets. The system’s core value lies in the Offline Feature Store (BigQuery), which guarantees point-in-time correctness by storing time-versioned feature data, preventing data leakage during model training. These validated features are then synced to the Online Feature Store (Memorystore) for ultra-low-latency serving to real-time models. Furthermore, robust governance is built into the pipeline, utilizing metadata to track data lineage and feature code versions, ensuring auditability and compliance throughout the data lifecycle using Google Dataplex. Although implemented primarily with GCP cloud services for its managed infrastructure benefits and integration, the underlying open-source technologies (Spark, Airflow) ensure the same robust design can be translated to other cloud environments or custom infrastructure based on trade-off analysis.
 
 
 
-If java is not installed then below are the steps to install (MAC OS)
-------------------------------------------------------------
+
+# If java is not installed then below are the steps to install (MAC OS)
+
 Step 1: Install Compatible Java (Java 17)
 
 You need to install the Java version that Spark 4.0.0 requires.
