@@ -43,33 +43,7 @@ def read_data_to_dataframe(spark: SparkSession, file_path: str) -> DataFrame:
 
 
 # --- Quality Validator and Output Generator ---
-'''
-def quality_validator(raw_df: DataFrame):
-    """
-    Applies confidence filtering and checks inter-annotator agreement.
-    Returns: agreed_df, disagreed_df
-    """
-    print("\n--- Running Quality Validator ---")
 
-    # 1. Quality Check 1: Confidence Filtering
-    high_confidence_df = raw_df.filter(col("confidence_score") >= MIN_CONFIDENCE_SCORE)
-
-    high_confidence_df.show(False)
-    text_label_counts = high_confidence_df.groupby('text')['label'].nunique()
-
-    text_label_counts.show(False)
-    disagreed_texts = text_label_counts[text_label_counts > 1].index.tolist()
-
-    # Separate into agreed and disagreed dataframes
-    disagreed_df = high_confidence_df[high_confidence_df['text'].isin(disagreed_texts)].copy()
-    agreed_df = high_confidence_df[~high_confidence_df['text'].isin(disagreed_texts)].copy()
-
-    agreed_df.show(5,False)
-    disagreed_df.show(5,False)
-
-    return agreed_df, disagreed_df
-
-'''
 
 def quality_validator(raw_df: DataFrame):
     """
